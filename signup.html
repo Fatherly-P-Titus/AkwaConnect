@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Akwa-Connect</title>
+    
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="styles/materialize.min.css">
+    
+    <!-- Cinzel Font -->
+    <link href="styles/cinzel/cinzel.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles/style.css">
+    
+    <!-- Material Icons -->
+    <link href="styles/font/micons.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation (Consistent with index.html) -->
+    <nav class="main-nav">
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo cz-black">Akwa-Connect</a>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html" class="cz-regular">Home</a></li>
+                <li><a href="signup.html" class="active cz-regular">Sign Up</a></li>
+                <li><a href="#login" class="modal-trigger cz-regular">Login</a></li>
+                <li class="user-only" style="display: none;">
+                    <a class="dropdown-trigger cz-regular" href="#!" data-target="user-dropdown">
+                        <img class="nav-profile-pic" src="" alt="Profile" style="display: none;">
+                        <span class="user-avatar circle"></span>
+                        <span class="user-name"></span>
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <ul class="sidenav" id="mobile-nav">
+        <li><a href="index.html" class="cz-regular">Home</a></li>
+        <li><a href="signup.html" class="active cz-regular">Sign Up</a></li>
+        <li><a href="#login" class="modal-trigger cz-regular">Login</a></li>
+        <li class="user-only" style="display: none;">
+            <a class="dropdown-trigger cz-regular" href="#!" data-target="user-dropdown">
+                <img class="nav-profile-pic" src="" alt="Profile" style="display: none;">
+                <span class="user-avatar circle"></span>
+                <span class="user-name"></span>
+                <i class="material-icons right">arrow_drop_down</i>
+            </a>
+        </li>
+    </ul>
+
+    <div class="container signup-container">
+        <div class="row">
+            <div class="col s12 m10 offset-m1">
+                <div class="card signup-card">
+                    <div class="card-content">
+                        <!-- Progress Bar -->
+                        <div class="progress-container">
+                            <div class="progress">
+                                <div class="determinate" style="width: 0%"></div>
+                            </div>
+                            <div class="progress-steps">
+                                <span class="step active" data-step="1">Basic Info</span>
+                                <span class="step" data-step="2">Location</span>
+                                <span class="step" data-step="3">Interests</span>
+                                <span class="step" data-step="4">Preferences</span>
+                                <span class="step" data-step="5">Account</span>
+                            </div>
+                        </div>
+                        
+                        <h4 class="center-align cz-black">Join Akwa-Connect</h4>
+                        <p class="center-align flow-text cz-regular">Create your profile to start connecting with singles in Akwa Ibom</p>
+                        
+                        <form id="signupForm" class="signup-form">
+                            
+                            <!-- Step 1: Basic Information -->
+                            <div class="form-step active" data-step="1">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="username" type="text" required maxlength="30">
+                                        <label for="username">Username <small>(not your real name)</small></label>
+                                        <span class="helper-text">Choose a unique username. This is how others will see you on the platform.</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="email" type="email" required>
+                                        <label for="email">Email Address</label>
+                                        <span class="helper-text">We'll send a verification email to this address</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="input-field col s12 m6">
+                                        <input id="dob" type="date" required class="datepicker">
+                                        <label for="dob">Date of Birth</label>
+                                    </div>
+                                    <div class="col s12 m6">
+                                        <label>Gender</label>
+                                        <div class="gender-selection">
+                                            <p>
+                                                <label>
+                                                    <input name="gender" type="radio" value="male" required />
+                                                    <span>Male</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input name="gender" type="radio" value="female" required />
+                                                    <span>Female</span>
+                                                </label>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-buttons">
+                                    <button type="button" class="btn next-step waves-effect waves-light gold-bg cz-bold">
+                                        Next <i class="material-icons right">arrow_forward</i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 2: Location Information -->
+                            <div class="form-step" data-step="2">
+                                <div class="row">
+                                    <div class="input-field col s12 m6">
+                                        <select id="lga" required>
+                                            <option value="" disabled selected>Select your Local Government Area</option>
+                                            <option value="uyo">Uyo</option>
+                                            <option value="ibesikpo">Ibesikpo Asutan</option>
+                                            <option value="nsit">Nsit Ibom</option>
+                                            <option value="eket">Eket</option>
+                                            <option value="ikot">Ikot Ekpene</option>
+                                            <option value="oron">Oron</option>
+                                            <option value="etinan">Etinan</option>
+                                            <option value="mkpat">Mkpat Enin</option>
+                                            <option value="ini">Ini</option>
+                                            <option value="ikono">Ikono</option>
+                                            <option value="essien">Essien Udim</option>
+                                            <option value="obot">Obot Akara</option>
+                                            <option value="onna">Onna</option>
+                                            <option value="etim">Etim Ekpo</option>
+                                            <option value="ikai">Ika</option>
+                                            <option value="ibeno">Ibeno</option>
+                                            <option value="eastern">Eastern Obolo</option>
+                                            <option value="udung">Udung Uko</option>
+                                            <option value="urue">Urue Offong/Oruko</option>
+                                            <option value="okobo">Okobo</option>
+                                            <option value="mbo">Mbo</option>
+                                            <option value="abak">Abak</option>
+                                            <option value="ukwa">Ukwa East</option>
+                                            <option value="ukwa-west">Ukwa West</option>
+                                            <option value="ibuaku">Ibuaku</option>
+                                            <option value="north">Itu North</option>
+                                            <option value="south">Itu South</option>
+                                            <option value="nsit-atai">Nsit Atai</option>
+                                            <option value="nsit-ubium">Nsit Ubium</option>
+                                        </select>
+                                        <label>Local Government Area (LGA)</label>
+                                    </div>
+                                    
+                                    <div class="input-field col s12 m6">
+                                        <input id="city" type="text" required>
+                                        <label for="city">Current City/Town of Residence</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-buttons">
+                                    <button type="button" class="btn prev-step waves-effect waves-light btn-flat">
+                                        <i class="material-icons left">arrow_back</i> Back
+                                    </button>
+                                    <button type="button" class="btn next-step waves-effect waves-light gold-bg cz-bold">
+                                        Next <i class="material-icons right">arrow_forward</i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 3: Interests & Bio -->
+                            <div class="form-step" data-step="3">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <h6>Hobbies & Interests (Select up to 5)</h6>
+                                        <div class="hobbies-grid">
+                                            <div class="hobby-item">
+                                                <input type="checkbox" id="hobby1" class="filled-in hobby-checkbox" value="Reading">
+                                                <label for="hobby1">
+                                                    <div class="hobby-icon"><i class="material-icons">book</i></div>
+                                                    <span>Reading</span>
+                                                </label>
+                                            </div>
+                                            <div class="hobby-item">
+                                                <input type="checkbox" id="hobby2" class="filled-in hobby-checkbox" value="Travel">
+                                                <label for="hobby2">
+                                                    <div class="hobby-icon"><i class="material-icons">flight</i></div>
+                                                    <span>Travel</span>
+                                                </label>
+                                            </div>
+                                            <div class="hobby-item">
+                                                <input type="checkbox" id="hobby3" class="filled-in hobby-checkbox" value="Sports">
+                                                <label for="hobby3">
+                                                    <div class="hobby-icon"><i class="material-icons">sports_soccer</i></div>
+                                                    <span>Sports</span>
+                                                </label>
+                                            </div>
+                                            <div class="hobby-item">
+                                                <input type="checkbox" id="hobby4" class="filled-in hobby-checkbox" value="Music">
+                                                <label for="hobby4">
+                                                    <div class="hobby-icon"><i class="material-icons">music_note</i></div>
+                                                    <span>Music</span>
+                                                </label>
+                                            </div>
+                                            <div class="hobby-item">
+                                                <input type="checkbox" id="hobby5" class="filled-in hobby-checkbox" value="Cooking">
+                                                <label for="hobby5">
+                                                    <div class="hobby-icon"><i class="material-icons">restaurant</i></div>
+                                                    <span>Cooking</span>
+                                                </label>
+                                            </div>
+                                            <div class="hobby-item">
+                                                <input type="checkbox" id="hobby6" class="filled-in hobby-checkbox" value="Movies">
+                                                <label for="hobby6">
+                                                    <div class="hobby-icon"><i class="material-icons">movie</i></div>
+                                                    <span>Movies</span>
+                                                </label>
+                                            </div>
+                                            <div class="hobby-item">
+                                                <input type="checkbox" id="hobby7" class="filled-in hobby-checkbox" value="Art">
+                                                <label for="hobby7">
+                                                    <div class="hobby-icon"><i class="material-icons">palette</i></div>
+                                                    <span>Art</span>
+                                                </label>
+                                            </div>
+                                            <div class="hobby-item">
+                                                <input type="checkbox" id="hobby8" class="filled-in hobby-checkbox" value="Dancing">
+                                                <label for="hobby8">
+                                                    <div class="hobby-icon"><i class="material-icons">music_video</i></div>
+                                                    <span>Dancing</span>
+                                                </label>
+                                            </div>
+                                            <div class="hobby-item">
+                                                <input type="checkbox" id="hobby9" class="filled-in hobby-checkbox" value="Fashion">
+                                                <label for="hobby9">
+                                                    <div class="hobby-icon"><i class="material-icons">style</i></div>
+                                                    <span>Fashion</span>
+                                                </label>
+                                            </div>
+                                            <div class="hobby-item">
+                                                <input type="checkbox" id="hobby10" class="filled-in hobby-checkbox" value="Photography">
+                                                <label for="hobby10">
+                                                    <div class="hobby-icon"><i class="material-icons">camera_alt</i></div>
+                                                    <span>Photography</span>
+                                                </label>
+                                            </div>
+                                            <div class="hobby-item">
+                                                <input type="checkbox" id="hobby11" class="filled-in hobby-checkbox" value="Technology">
+                                                <label for="hobby11">
+                                                    <div class="hobby-icon"><i class="material-icons">computer</i></div>
+                                                    <span>Technology</span>
+                                                </label>
+                                            </div>
+                                            <div class="hobby-item">
+                                                <input type="checkbox" id="hobby12" class="filled-in hobby-checkbox" value="Volunteering">
+                                                <label for="hobby12">
+                                                    <div class="hobby-icon"><i class="material-icons">volunteer_activism</i></div>
+                                                    <span>Volunteering</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="hobby-counter">
+                                            <span id="selected-hobbies-count">0</span>/5 hobbies selected
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Profile Picture Section -->
+                                <div class="row">
+                                    <div class="col s12">
+                                        <h6>Profile Picture</h6>
+                                        <div class="profile-picture-upload">
+                                            <div class="upload-area" id="uploadArea">
+                                                <i class="material-icons large">add_a_photo</i>
+                                                <p class="cz-regular">Click to upload profile picture</p>
+                                                <small>JPG, PNG, or GIF. Max 5MB</small>
+                                                <input type="file" id="profilePicture" accept="image/*" style="display: none;">
+                                            </div>
+                                            
+                                            <div class="image-preview" id="imagePreview" style="display: none;">
+                                                <img id="previewImage" src="" alt="Profile Preview">
+                                                <div class="preview-actions">
+                                                    <button type="button" class="btn-flat btn-small change-pic">
+                                                        <i class="material-icons">edit</i> Change
+                                                    </button>
+                                                    <button type="button" class="btn-flat btn-small remove-pic">
+                                                        <i class="material-icons">delete</i> Remove
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="upload-requirements">
+                                                <p><i class="material-icons">info</i> For best results:</p>
+                                                <ul>
+                                                    <li>Use a clear, recent photo of yourself</li>
+                                                    <li>Face should be clearly visible</li>
+                                                    <li>No group photos or memes</li>
+                                                    <li>Well-lit environment</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="bio" class="materialize-textarea" maxlength="500" required></textarea>
+                                        <label for="bio">About Myself</label>
+                                        <span class="helper-text">Tell us about yourself (max 500 characters)</span>
+                                        <div class="char-counter">
+                                            <span id="bio-counter">0</span>/500
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-buttons">
+                                    <button type="button" class="btn prev-step waves-effect waves-light btn-flat">
+                                        <i class="material-icons left">arrow_back</i> Back
+                                    </button>
+                                    <button type="button" class="btn next-step waves-effect waves-light gold-bg cz-bold">
+                                        Next <i class="material-icons right">arrow_forward</i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 4: Preferences -->
+                            <div class="form-step" data-step="4">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <h6>Who I'm Looking For</h6>
+                                        <div class="preference-input">
+                                            <div class="input-field">
+                                                <input id="preference-input" type="text" placeholder="Add a preference (e.g., 'Must be spiritual', 'Loves cooking', etc.)">
+                                                <button type="button" id="add-preference" class="btn-floating btn-small emerald-bg">
+                                                    <i class="material-icons">add</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="preferences-list" id="preferences-container">
+                                            <!-- Dynamic preferences will be added here -->
+                                        </div>
+                                        <small class="helper-text">Add specific qualities you're looking for in a partner</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col s12">
+                                        <h6>Disability Information (Optional)</h6>
+                                        <div class="disability-section">
+                                            <p>
+                                                <label>
+                                                    <input type="checkbox" id="hasDisability" />
+                                                    <span>I have a disability</span>
+                                                </label>
+                                            </p>
+                                            <div class="input-field" id="disabilityField" style="display: none;">
+                                                <textarea id="disabilityDesc" class="materialize-textarea"></textarea>
+                                                <label for="disabilityDesc">Please describe (optional)</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col s12">
+                                        <h6>Relationship Goals</h6>
+                                        <div class="row">
+                                            <div class="input-field col s12 m6">
+                                                <select id="preferredGender">
+                                                    <option value="any" selected>Any Gender</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                </select>
+                                                <label>Preferred Gender</label>
+                                            </div>
+                                            
+                                            <div class="col s12 m6">
+                                                <label>Preferred Age Range</label>
+                                                <div class="age-range">
+                                                    <div class="input-field">
+                                                        <input id="minAge" type="number" min="18" max="70" value="25" class="validate">
+                                                        <label for="minAge">Min Age</label>
+                                                    </div>
+                                                    <span class="range-to">to</span>
+                                                    <div class="input-field">
+                                                        <input id="maxAge" type="number" min="25" max="100" value="40" class="validate">
+                                                        <label for="maxAge">Max Age</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <label>Preferred Demographics (Select all that apply)</label>
+                                                <div class="demographics-checkboxes">
+                                                    <p>
+                                                        <label>
+                                                            <input type="checkbox" class="demographic-checkbox" value="student" />
+                                                            <span>Students</span>
+                                                        </label>
+                                                    </p>
+                                                    <p>
+                                                        <label>
+                                                            <input type="checkbox" class="demographic-checkbox" value="professional" />
+                                                            <span>Professionals</span>
+                                                        </label>
+                                                    </p>
+                                                    <p>
+                                                        <label>
+                                                            <input type="checkbox" class="demographic-checkbox" value="single_parent" />
+                                                            <span>Single Parents</span>
+                                                        </label>
+                                                    </p>
+                                                    <p>
+                                                        <label>
+                                                            <input type="checkbox" class="demographic-checkbox" value="business_owner" />
+                                                            <span>Business Owners</span>
+                                                        </label>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-buttons">
+                                    <button type="button" class="btn prev-step waves-effect waves-light btn-flat">
+                                        <i class="material-icons left">arrow_back</i> Back
+                                    </button>
+                                    <button type="button" class="btn next-step waves-effect waves-light gold-bg cz-bold">
+                                        Next <i class="material-icons right">arrow_forward</i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 5: Account Setup -->
+                            <div class="form-step" data-step="5">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="password" type="password" required minlength="8">
+                                        <label for="password">Password</label>
+                                        <span class="helper-text">Minimum 8 characters with letters and numbers</span>
+                                        <div class="password-strength">
+                                            <div class="strength-bar"></div>
+                                            <span class="strength-text">Password strength</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="confirmPassword" type="password" required>
+                                        <label for="confirmPassword">Confirm Password</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col s12">
+                                        <p>
+                                            <label>
+                                                <input type="checkbox" id="terms" required />
+                                                <span>I agree to the <a href="#terms-modal" class="modal-trigger">Terms of Service</a> and <a href="#privacy-modal" class="modal-trigger">Privacy Policy</a></span>
+                                            </label>
+                                        </p>
+                                        <p>
+                                            <label>
+                                                <input type="checkbox" id="newsletter" checked />
+                                                <span>Subscribe to our newsletter for updates and tips</span>
+                                            </label>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-buttons">
+                                    <button type="button" class="btn prev-step waves-effect waves-light btn-flat">
+                                        <i class="material-icons left">arrow_back</i> Back
+                                    </button>
+                                    <button type="submit" class="btn submit-btn waves-effect waves-light emerald-bg cz-bold">
+                                        <i class="material-icons left">check</i> Create Account
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <div class="center-align login-link">
+                            <p class="cz-regular">Already have an account? <a href="#login" class="modal-trigger">Login here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <h4 class="cz-black">Terms of Service</h4>
+            <p>Terms content here...</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+
+    <!-- Privacy Modal -->
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <h4 class="cz-black">Privacy Policy</h4>
+            <p>Privacy policy content here...</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+
+    <!-- Image Crop Modal -->
+<div id="crop-modal" class="modal cropper-modal">
+    <div class="modal-content">
+        <h4 class="cz-black">Crop Profile Picture</h4>
+        <p>Adjust the crop area to fit your face. The image will be cropped to a square.</p>
+        
+        <div class="cropper-container">
+            <div id="crop-image-container"></div>
+        </div>
+        
+        <div class="cropper-actions">
+            <button id="cancel-crop" class="btn waves-effect waves-light btn-flat">
+                <i class="material-icons left">cancel</i> Cancel
+            </button>
+            <button id="crop-image" class="btn waves-effect waves-light emerald-bg">
+                <i class="material-icons left">crop</i> Crop & Save
+            </button>
+        </div>
+    </div>
+</div>
+
+    <!-- Scripts -->
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/materialize.min.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/signup.js"></script>
+</body>
+</html>

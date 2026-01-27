@@ -1,0 +1,69 @@
+@font-face {
+    font-family: 'cz-black';
+    src: url('Cinzel-Black.otf') format('otf');
+}
+
+@font-face {
+    font-family: 'cz-bold';
+    src: url('Cinzel-Bold.otf') format('otf');
+}
+
+@font-face {
+    font-family: 'cz-regular';
+    src: url('Cinzel-Regular.otf') format('otf');
+}
+
+
+@font-face {
+    font-family: 'czd-black';
+    src: url('CinzelDecorative-Black.otf') format('otf');
+}
+
+@font-face {
+    font-family: 'czd-bold';
+    src: url('CinzelDecorative-Bold.otf') format('otf');
+}
+
+@font-face {
+    font-family: 'czd-regular';
+    src: url('CinzelDecorative-Regular.otf') format('otf');
+}
+
+
+
+
+
+
+.cz-black{
+  font-family: cz-black;
+}
+.cz-bold{
+  font-family: cz-bold;
+}
+.cz-reg{
+  font-family: cz-regular;
+}
+
+.czd-black{
+    font-family: czd-black;
+}
+.czd-bold{
+    font-family: czd-bold;
+}
+.czd-reg{
+    font-family: czd-regular;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.underline{
+    text-decoration: underline;
+}
+
+
+/* Apply Cinzel to headings by default */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cz-black', serif;
+}

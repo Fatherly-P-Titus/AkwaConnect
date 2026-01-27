@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akwa-Connect - Find Your Perfect Match in Akwa Ibom</title>
+    
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="styles/materialize.min.css">
+    
+    <!-- Cinzel Font -->
+    <link href="styles/cinzel/cinzel.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles/style.css">
+    
+    <!-- Material Icons -->
+    <link href="styles/font/micons.css" rel="stylesheet">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="application-name" content="Akwa-Connect">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Akwa-Connect">
+    <meta name="description" content="Connect with singles in Akwa Ibom State">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-TileColor" content="#10b981">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="theme-color" content="#10b981">
+
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-167x167.png">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+</head>
+
+<body>
+    <!-- Splash Screen for PWA -->
+    <div class="app-splash hide">
+        <div class="splash-logo cz-black">Akwa-Connect</div>
+        <div class="splash-spinner"></div>
+    </div>
+
+    <!-- Logo Section -->
+    <div class="logo-container center-align">
+        <img src="assets/AC-logo1.jpg" 
+             alt="Akwa-Connect Logo" 
+             class="main-logo"
+             style="height: 90px;">
+    </div>
+
+    <!-- 1. NAVIGATION BAR -->
+    <nav class="main-nav">
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo cz-black">Akwa-Connect</a>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html" class="active cz-regular">Home</a></li>
+                <li><a href="#how-it-works" class="cz-regular">How It Works</a></li>
+                <li><a href="signup.html" class="cz-regular">Sign Up</a></li>
+                <li class="guest-only"><a href="#login" class="modal-trigger cz-regular">Login</a></li>
+                <li class="user-only" style="display: none;">
+                    <a class="dropdown-trigger cz-regular" href="#!" data-target="user-dropdown">
+                        <span class="user-avatar circle"></span>
+                        <span class="user-name"></span>
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <ul class="sidenav" id="mobile-nav">
+        <li><a href="index.html" class="cz-regular">Home</a></li>
+        <li><a href="#how-it-works" class="cz-regular">How It Works</a></li>
+        <li><a href="signup.html" class="cz-regular">Sign Up</a></li>
+        <li class="guest-only"><a href="#login" class="modal-trigger cz-regular">Login</a></li>
+        <li class="user-only" style="display: none;">
+            <a href="profile.html" class="cz-regular">My Profile</a>
+        </li>
+    </ul>
+
+    <!-- User Dropdown -->
+    <ul id="user-dropdown" class="dropdown-content">
+        <li><a href="profile.html" class="cz-regular"><i class="material-icons">person</i>My Profile</a></li>
+        <li><a href="matches.html" class="cz-regular"><i class="material-icons">favorite</i>Matches</a></li>
+        <li><a href="messages.html" class="cz-regular"><i class="material-icons">chat</i>Messages</a></li>
+        <li class="divider"></li>
+        <li><a href="#!" id="logout-btn" class="cz-regular"><i class="material-icons">exit_to_app</i>Logout</a></li>
+    </ul>
+
+    <!-- 2. HERO SECTION -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row valign-wrapper">
+                <div class="col s12 m6">
+                    <h1 class="cz-black hero-title">Find Your Perfect Match in <span class="emerald-text">Akwa Ibom</span></h1>
+                    <p class="flow-text cz-regular hero-subtitle">Connect with professionals, academics, and single parents across our beautiful state. Experience culturally-tailored matchmaking that understands your values.</p>
+                    
+                    <div class="hero-buttons">
+                        <a href="signup.html" class="btn-large waves-effect waves-light emerald-bg cz-bold">
+                            <i class="material-icons left">person_add</i>Join Free
+                        </a>
+                        <a href="#how-it-works" class="btn-large waves-effect waves-light gold-bg cz-bold">
+                            <i class="material-icons left">play_circle</i>How It Works
+                        </a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">1,250+</span>
+                            <span class="stat-label cz-regular">Active Members</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">89%</span>
+                            <span class="stat-label cz-regular">Match Success</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">31</span>
+                            <span class="stat-label cz-regular">LGAs Covered</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col s12 m6">
+                    <!-- 4. POSTERS CAROUSEL AREA -->
+                    <div class="hero-carousel">
+                        <div class="carousel carousel-slider">
+                            <div class="carousel-item">
+                                <img src="assets/posters/poster11.jpg" alt="Couple at Uyo Stadium">
+                                <div class="carousel-caption cz-bold">Love in the Heart of Uyo</div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/posters/poster8.jpg" alt="Professional networking">
+                                <div class="carousel-caption cz-bold">Connect with Professionals</div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/posters/poster7.jpg" alt="University campus">
+                                <div class="carousel-caption cz-bold">Academic Community</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. MAIN BODY SECTION -->
+    <main class="main-content">
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="section how-it-works">
+            <div class="container">
+                <h2 class="center-align cz-black section-title">How Akwa-Connect Works</h2>
+                <p class="center-align flow-text cz-regular section-subtitle">Find your perfect match in 4 simple steps</p>
+                
+                <div class="row">
+                    <div class="col s12 m6 l3">
+                        <div class="card-panel step-card center-align">
+                            <div class="step-number cz-black">1</div>
+                            <i class="large material-icons gold-text">person_add</i>
+                            <h5 class="cz-bold">Create Profile</h5>
+                            <p>Sign up and create your personalized profile with local preferences</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col s12 m6 l3">
+                        <div class="card-panel step-card center-align">
+                            <div class="step-number cz-black">2</div>
+                            <i class="large material-icons gold-text">tune</i>
+                            <h5 class="cz-bold">Set Preferences</h5>
+                            <p>Choose your match preferences, hobbies, and relationship goals</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col s12 m6 l3">
+                        <div class="card-panel step-card center-align">
+                            <div class="step-number cz-black">3</div>
+                            <i class="large material-icons gold-text">favorite</i>
+                            <h5 class="cz-bold">Find Matches</h5>
+                            <p>Get daily algorithm-based matches or search manually</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col s12 m6 l3">
+                        <div class="card-panel step-card center-align">
+                            <div class="step-number cz-black">4</div>
+                            <i class="large material-icons gold-text">chat</i>
+                            <h5 class="cz-bold">Connect & Chat</h5>
+                            <p>Start meaningful conversations with your matches</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section features-section">
+            <div class="container">
+                <h2 class="center-align cz-black section-title">Why Choose Akwa-Connect?</h2>
+                
+                <div class="row">
+                    <div class="col s12 m4">
+                        <div class="card-panel feature-card center-align">
+                            <i class="large material-icons emerald-text">school</i>
+                            <h5 class="cz-bold">Academic Community</h5>
+                            <p>Connect with students and staff from UNIUYO, AKSU, and other institutions. Special algorithm for academic compatibility.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col s12 m4">
+                        <div class="card-panel feature-card center-align">
+                            <i class="large material-icons emerald-text">family_restroom</i>
+                            <h5 class="cz-bold">Single Parents</h5>
+                            <p>Dedicated matching for single parents. Connect with others who understand the unique challenges and joys of parenting.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col s12 m4">
+                        <div class="card-panel feature-card center-align">
+                            <i class="large material-icons emerald-text">business_center</i>
+                            <h5 class="cz-bold">Professionals</h5>
+                            <p>Meet working professionals aged 25-40 across various industries in Akwa Ibom. Network and find love.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section testimonials-section">
+            <div class="container">
+                <h2 class="center-align cz-black section-title">Success Stories</h2>
+                
+                <div class="row">
+                    <div class="col s12 m4">
+                        <div class="card-panel testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="cz-regular">"As a single parent in Uyo, I never thought I'd find someone who understood my lifestyle. Akwa-Connect changed that!"</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar emerald-bg">C</div>
+                                <div class="author-info">
+                                    <span class="author-name cz-bold">Chioma, 32</span>
+                                    <span class="author-location cz-regular">Uyo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col s12 m4">
+                        <div class="card-panel testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="cz-regular">"The LGA-based matching helped me find someone from my hometown. Our shared culture made all the difference."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar gold-bg">E</div>
+                                <div class="author-info">
+                                    <span class="author-name cz-bold">Emmanuel, 28</span>
+                                    <span class="author-location cz-regular">Ikot Ekpene</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col s12 m4">
+                        <div class="card-panel testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="cz-regular">"Meeting fellow academics from UNIUYO through this platform was amazing. We're getting married next year!"</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar emerald-bg">A</div>
+                                <div class="author-info">
+                                    <span class="author-name cz-bold">Aniekan, 30</span>
+                                    <span class="author-location cz-regular">Eket</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 5. FOOTER AREA -->
+        <footer class="page-footer" style="background: linear-gradient(90deg, #047857 0%, #10b981 100%);">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m4">
+                    <h5 class="white-text">Akwa-Connect</h5>
+                    <p class="grey-text text-lighten-4">
+                        Connecting hearts across Akwa Ibom State.<br>
+                        Find your match in our community.
+                    </p>
+                </div>
+                <div class="col s12 m4">
+                    <h5 class="white-text">Quick Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="../index.html">Home</a></li>
+                        <li><a class="grey-text text-lighten-3" href="signup.html">Sign Up</a></li>
+                        <li><a class="grey-text text-lighten-3" href="profile.html">My Profile</a></li>
+                        <li><a class="grey-text text-lighten-3" href="matches.html">Find Matches</a></li>
+                    </ul>
+                </div>
+                <div class="col s12 m4">
+                    <h5 class="white-text">Legal</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="legal/index.html">Legal Hub</a></li>
+                        <li><a class="grey-text text-lighten-3" href="legal/terms.html">Terms of Service</a></li>
+                        <li><a class="grey-text text-lighten-3" href="legal/privacy.html">Privacy Policy</a></li>
+                        <li><a class="grey-text text-lighten-3" href="legal/conduct.html">Code of Conduct</a></li>
+                        <li><a class="grey-text text-lighten-3" href="mailto:legal@akwaconnect.com">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright" style="background: rgba(0,0,0,0.2);">
+            <div class="container">
+                <div class="row">
+                    <div class="col s6">
+                        © 2026 Akwa-Connect. All rights reserved.
+                    </div>
+                    <div class="col s6 right-align">
+                        Created by Fatherly P. Titus • February 27, 2026
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="login" class="modal">
+        <div class="modal-content">
+            <h4 class="cz-black">Login to Akwa-Connect</h4>
+            <div class="row">
+                <form id="login-form">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" class="validate" required>
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="password" type="password" class="validate" required>
+                        <label for="password">Password</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-light btn-flat">Cancel</a>
+            <a href="#!" id="login-submit" class="waves-effect waves-light btn emerald-bg">Login</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/materialize.min.js"></script>
+    <script src="scripts/pwa-install.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
+
+
+

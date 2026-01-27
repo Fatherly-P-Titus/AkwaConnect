@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Matches - Akwa-Connect</title>
+    
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="styles/materialize.min.css">
+
+    <link rel="stylesheet" href="styles/font/micons.css">
+    
+    <!-- Cinzel Font -->
+    <link href="styles/cinzel/cinzel.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles/style.css">
+    
+    <!-- Matches-specific styles -->
+    <link rel="stylesheet" href="styles/matches.css">
+</head>
+
+<body>
+    <!-- Splash Screen for PWA -->
+    <div class="app-splash hide">
+        <div class="splash-logo cz-black">Akwa-Connect</div>
+        <div class="splash-spinner"></div>
+    </div>
+
+    <!-- Logo Section -->
+    <div class="logo-container center-align">
+        <img src="assets/AC-logo2.jpg" 
+             alt="Akwa-Connect Logo" 
+             class="main-logo">
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="main-nav">
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo cz-black">Akwa-Connect</a>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="profile.html" class="cz-regular">
+                    <i class="material-icons">person</i>
+                </a></li>
+                <li><a href="matches.html" class="active cz-regular">
+                    <i class="material-icons">favorite</i>
+                </a></li>
+                <li><a href="messages.html" class="cz-regular">
+                    <i class="material-icons">message</i>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <ul class="sidenav" id="mobile-nav">
+        <li><a href="index.html" class="cz-regular">Home</a></li>
+        <li><a href="profile.html" class="cz-regular">Profile</a></li>
+        <li><a href="matches.html" class="cz-regular">Matches</a></li>
+        <li><a href="messages.html" class="cz-regular">Messages</a></li>
+    </ul>
+
+    <!-- Main Content -->
+    <main class="matches-main">
+        <div class="container">
+            <!-- Mode Selector -->
+            <section class="mode-selector">
+                <div class="card-panel gradient-card">
+                    <h5 class="center-align cz-black emerald-text">Find Your Perfect Match</h5>
+                    <div class="center-align">
+                        <button id="algorithmMode" class="btn emerald-bg cz-bold">
+                            <i class="material-icons left">smart_toy</i>Algorithm Matches
+                        </button>
+                        <button id="manualMode" class="btn gold-bg cz-bold">
+                            <i class="material-icons left">search</i>Manual Search
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Algorithm Matches Section -->
+            <section id="algorithmSection" class="matches-section">
+                <div class="section-header">
+                    <h4 class="cz-black emerald-text">Daily Recommended Matches</h4>
+                    <p class="cz-regular">Based on your profile, preferences, and compatibility</p>
+                </div>
+
+                <div id="matchesContainer" class="matches-container">
+                    <!-- Dynamic content will be loaded here -->
+                    <div class="empty-state">
+                        <i class="material-icons">favorite_border</i>
+                        <h5 class="cz-bold">Loading your matches...</h5>
+                        <p class="cz-regular">Finding compatible profiles across Akwa Ibom</p>
+                        <div class="progress">
+                            <div class="indeterminate emerald-bg"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Manual Search Section (Initially hidden) -->
+            <section id="manualSection" class="matches-section" style="display: none;">
+                <div class="filter-panel">
+                    <h5 class="cz-black emerald-text">🔍 Search Filters</h5>
+                    
+                    <div class="row">
+                        <div class="input-field col s12 m4">
+                            <select id="filterLGA" class="cz-regular">
+                                <option value="">Any LGA</option>
+                                <option value="uyo">Uyo</option>
+                                <option value="ibesikpo">Ibesikpo Asutan</option>
+                                <option value="nsit">Nsit Ibom</option>
+                                <option value="eket">Eket</option>
+                                <option value="ikot">Ikot Ekpene</option>
+                                <option value="oruk">Oruk Anam</option>
+                                <option value="mkpat">Mkpat Enin</option>
+                            </select>
+                            <label class="cz-regular">Local Government Area</label>
+                        </div>
+                        
+                        <div class="col s12 m4">
+                            <label class="cz-regular">Age Range</label>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="filterMinAge" type="number" 
+                                           min="18" max="70" 
+                                           placeholder="Min" class="cz-regular">
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="filterMaxAge" type="number" 
+                                           min="18" max="100" 
+                                           placeholder="Max" class="cz-regular">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="input-field col s12 m4">
+                            <select id="filterGoal" class="cz-regular">
+                                <option value="">Any Relationship Goal</option>
+                                <option value="marriage">Marriage</option>
+                                <option value="serious">Serious Relationship</option>
+                                <option value="dating">Casual Dating</option>
+                                <option value="friendship">Friendship</option>
+                                <option value="single_parent">Single Parent Support</option>
+                            </select>
+                            <label class="cz-regular">Relationship Goal</label>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col s12">
+                            <label class="cz-regular">Hobbies (Select up to 3)</label>
+                            <div id="hobbyFilters" class="hobbies-filter">
+                                <!-- Hobbies will be dynamically generated -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="center-align filter-actions">
+                        <button id="applyFilters" class="btn emerald-bg cz-bold">
+                            <i class="material-icons left">check</i>Apply Filters
+                        </button>
+                        <button id="clearFilters" class="btn gold-bg cz-bold">
+                            <i class="material-icons left">clear</i>Clear All
+                        </button>
+                    </div>
+                </div>
+
+                <div id="manualResults" class="manual-results">
+                    <h5 class="cz-bold emerald-text">Search Results</h5>
+                    <div id="manualMatchesContainer" class="matches-container">
+                        <!-- Manual search results will appear here -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <div class="container">
+            <div class="row">
+                <div class="col s6 center-align">
+                    <button id="passBtn" class="btn-large pass-btn cz-bold">
+                        <i class="material-icons">close</i> Pass
+                    </button>
+                </div>
+                <div class="col s6 center-align">
+                    <button id="likeBtn" class="btn-large like-btn cz-bold">
+                        <i class="material-icons">favorite</i> Like
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Match Modal -->
+    <div id="matchModal" class="modal">
+        <div class="modal-content center-align">
+            <h4 class="cz-black emerald-text">🎉 It's a Match!</h4>
+            <div class="match-users">
+                <div class="match-user">
+                    <div class="match-avatar">
+                        <i class="material-icons" id="matchUserIcon">person</i>
+                    </div>
+                    <h5 id="matchUserName" class="cz-bold"></h5>
+                </div>
+                <div class="match-heart">
+                    <i class="material-icons">favorite</i>
+                </div>
+                <div class="match-user">
+                    <div class="match-avatar">
+                        <i class="material-icons">person</i>
+                    </div>
+                    <h5 class="cz-bold">You</h5>
+                </div>
+            </div>
+            <p class="cz-regular">You both liked each other! Start a conversation now.</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-light btn-flat cz-regular">
+                Keep Browsing
+            </a>
+            <a href="messages.html?matchId=" id="chatNowBtn" class="btn emerald-bg cz-bold">
+                <i class="material-icons left">chat</i>Start Chat
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/materialize.min.js"></script>
+    <script src="scripts/matching.js"></script>
+    <script src="scripts/matches.js" type="module"></script>
+</body>
+</html>

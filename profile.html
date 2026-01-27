@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Akwa-Connect</title>
+    
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="styles/materialize.min.css">
+    
+    <!-- Cinzel Font -->
+    <link href="styles/cinzel/cinzel.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles/style.css">
+    
+    <!-- Material Icons -->
+    <link href="styles/font/micons.css" rel="stylesheet">
+</head>
+
+<body class="profile-page">
+
+
+    <!-- Logo Section -->
+    <div class="logo-container center-align">
+        <img src="assets/AC-logo1.jpg" 
+             alt="Akwa-Connect Logo" 
+             class="main-logo"
+             style="height: 45px;">
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo cz-black">Akwa-Connect</a>
+            <a href="#" data-target="profile-mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="profile.html" class="active cz-regular"><i class="material-icons left">person</i>Profile</a></li>
+                <li><a href="matches.html" class="cz-regular"><i class="material-icons left">favorite</i>Matches</a></li>
+                <li><a href="messages.html" class="cz-regular"><i class="material-icons left">chat</i>Messages</a></li>
+                <li>
+                    <a class="dropdown-trigger cz-regular" href="#!" data-target="profile-dropdown">
+                        <span class="user-avatar circle"></span>
+                        <img class="nav-profile-pic" src="" alt="Profile" style="display: none;">
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <ul class="sidenav" id="profile-mobile-nav">
+        <li><a href="index.html" class="cz-regular">Home</a></li>
+        <li><a href="profile.html" class="active cz-regular">Profile</a></li>
+        <li><a href="matches.html" class="cz-regular">Matches</a></li>
+        <li><a href="messages.html" class="cz-regular">Messages</a></li>
+        <li class="divider"></li>
+        <li><a href="#logout" class="cz-regular logout-btn"><i class="material-icons left">exit_to_app</i>Logout</a></li>
+    </ul>
+
+    <!-- User Dropdown -->
+    <ul id="profile-dropdown" class="dropdown-content">
+        <li><a href="profile.html" class="cz-regular"><i class="material-icons">person</i>My Profile</a></li>
+        <li><a href="settings.html" class="cz-regular"><i class="material-icons">settings</i>Settings</a></li>
+        <li class="divider"></li>
+        <li><a href="#logout" class="cz-regular logout-btn"><i class="material-icons">exit_to_app</i>Logout</a></li>
+    </ul>
+
+    <!-- Profile Header -->
+    <section class="profile-header">
+        <div class="container">
+            <div class="row valign-wrapper">
+                <div class="col s12 m4 center-align">
+                    <div class="profile-picture-container">
+                        <div class="profile-pic-large" id="profilePicture">
+                            <img id="profilePictureImg" src="" alt="Profile">
+                            <div class="avatar-fallback" id="avatarFallback">
+                                <i class="material-icons">person</i>
+                            </div>
+                        </div>
+                        <button class="btn-floating btn-large waves-effect waves-light edit-pic-btn" id="changePictureBtn">
+                            <i class="material-icons">photo_camera</i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="col s12 m8">
+                    <div class="profile-info">
+                        <div class="profile-name-section">
+                            <h2 class="cz-black" id="profileUsername">Loading...</h2>
+                            <div class="profile-meta">
+                                <span class="profile-age" id="profileAge">--</span>
+                                <span class="profile-location" id="profileLocation">Akwa Ibom</span>
+                                <span class="profile-lga" id="profileLGA">--</span>
+                            </div>
+                            <p class="profile-bio" id="profileBioShort">No bio yet</p>
+                        </div>
+                        
+                        <div class="profile-actions">
+                            <button class="btn waves-effect waves-light emerald-bg cz-bold" id="editProfileBtn">
+                                <i class="material-icons left">edit</i>Edit Profile
+                            </button>
+                            <button class="btn waves-effect waves-light gold-bg cz-bold" id="viewMatchesBtn">
+                                <i class="material-icons left">favorite</i>View Matches
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Stats -->
+    <section class="profile-stats">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="stat-card">
+                        <div class="stat-icon emerald-bg">
+                            <i class="material-icons">favorite</i>
+                        </div>
+                        <div class="stat-content">
+                            <h4 class="cz-bold" id="matchCount">0</h4>
+                            <p class="cz-regular">Matches</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col s12 m4">
+                    <div class="stat-card">
+                        <div class="stat-icon gold-bg">
+                            <i class="material-icons">visibility</i>
+                        </div>
+                        <div class="stat-content">
+                            <h4 class="cz-bold" id="viewCount">0</h4>
+                            <p class="cz-regular">Profile Views</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col s12 m4">
+                    <div class="stat-card">
+                        <div class="stat-icon emerald-bg">
+                            <i class="material-icons">chat</i>
+                        </div>
+                        <div class="stat-content">
+                            <h4 class="cz-bold" id="messageCount">0</h4>
+                            <p class="cz-regular">Messages</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Tabs -->
+    <main class="profile-main">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs profile-tabs">
+                        <li class="tab col s3"><a href="#about-tab" class="cz-bold active">About Me</a></li>
+                        <li class="tab col s3"><a href="#preferences-tab" class="cz-bold">Preferences</a></li>
+                        <li class="tab col s3"><a href="#activity-tab" class="cz-bold">Activity</a></li>
+                        <li class="tab col s3"><a href="#settings-tab" class="cz-bold">Settings</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- About Tab -->
+            <div id="about-tab" class="tab-content">
+                <div class="row">
+                    <div class="col s12 m8">
+                        <div class="card-panel">
+                            <h5 class="cz-black">About Myself</h5>
+                            <p id="profileBioFull" class="flow-text">Loading bio...</p>
+                            
+                            <div class="section-divider"></div>
+                            
+                            <h5 class="cz-black">My Hobbies & Interests</h5>
+                            <div class="hobbies-list" id="profileHobbies">
+                                <!-- Hobbies will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col s12 m4">
+                        <div class="card-panel">
+                            <h5 class="cz-black">Basic Information</h5>
+                            <ul class="profile-details">
+                                <li>
+                                    <i class="material-icons emerald-text">cake</i>
+                                    <span>Age: <strong id="profileAgeDetail">--</strong></span>
+                                </li>
+                                <li>
+                                    <i class="material-icons emerald-text">person</i>
+                                    <span>Gender: <strong id="profileGender">--</strong></span>
+                                </li>
+                                <li>
+                                    <i class="material-icons emerald-text">location_on</i>
+                                    <span>LGA: <strong id="profileLGADetail">--</strong></span>
+                                </li>
+                                <li>
+                                    <i class="material-icons emerald-text">home</i>
+                                    <span>City: <strong id="profileCity">--</strong></span>
+                                </li>
+                                <li>
+                                    <i class="material-icons emerald-text">email</i>
+                                    <span>Email: <strong id="profileEmail">--</strong></span>
+                                </li>
+                                <li>
+                                    <i class="material-icons emerald-text">calendar_today</i>
+                                    <span>Member Since: <strong id="memberSince">--</strong></span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card-panel" id="disabilitySection" style="display: none;">
+                            <h5 class="cz-black">Accessibility Information</h5>
+                            <p id="disabilityInfo">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preferences Tab -->
+            <div id="preferences-tab" class="tab-content">
+                <div class="row">
+                    <div class="col s12 m6">
+                        <div class="card-panel">
+                            <h5 class="cz-black">Relationship Goals</h5>
+                            <div class="relationship-goal" id="relationshipGoalDisplay">
+                                <div class="goal-icon">
+                                    <i class="material-icons">favorite</i>
+                                </div>
+                                <div class="goal-content">
+                                    <h6 class="cz-bold" id="goalTitle">Loading...</h6>
+                                    <p id="goalDescription">Loading...</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-panel">
+                            <h5 class="cz-black">What I'm Looking For</h5>
+                            <div class="preferences-container" id="lookingForList">
+                                <!-- Preferences will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col s12 m6">
+                        <div class="card-panel">
+                            <h5 class="cz-black">Preferences Details</h5>
+                            <div class="preference-details">
+                                <div class="preference-item">
+                                    <i class="material-icons gold-text">people</i>
+                                    <div>
+                                        <span class="cz-regular">Preferred Gender</span>
+                                        <strong class="cz-bold" id="preferredGender">Any</strong>
+                                    </div>
+                                </div>
+                                
+                                <div class="preference-item">
+                                    <i class="material-icons gold-text">calendar_today</i>
+                                    <div>
+                                        <span class="cz-regular">Age Range</span>
+                                        <strong class="cz-bold" id="ageRange">25 - 40 years</strong>
+                                    </div>
+                                </div>
+                                
+                                <div class="preference-item">
+                                    <i class="material-icons gold-text">school</i>
+                                    <div>
+                                        <span class="cz-regular">Demographics</span>
+                                        <strong class="cz-bold" id="demographics">All</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-panel">
+                            <h5 class="cz-black">Compatibility Score</h5>
+                            <div class="compatibility-score">
+                                <div class="score-circle">
+                                    <div class="score-progress" id="compatibilityCircle">
+                                        <span class="score-value" id="compatibilityValue">0%</span>
+                                    </div>
+                                </div>
+                                <p class="score-description cz-regular" id="compatibilityDescription">
+                                    Based on your preferences and interactions
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Tab -->
+            <div id="activity-tab" class="tab-content">
+                <div class="row">
+                    <div class="col s12 m6">
+                        <div class="card-panel">
+                            <h5 class="cz-black">Recent Activity</h5>
+                            <div class="activity-feed" id="activityFeed">
+                                <!-- Activity items will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col s12 m6">
+                        <div class="card-panel">
+                            <h5 class="cz-black">Your Stats</h5>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-label cz-regular">Match Rate</span>
+                                    <span class="stat-value cz-bold" id="matchRate">0%</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label cz-regular">Response Time</span>
+                                    <span class="stat-value cz-bold" id="responseTime">--</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label cz-regular">Profile Completeness</span>
+                                    <span class="stat-value cz-bold" id="profileComplete">0%</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label cz-regular">Daily Visitors</span>
+                                    <span class="stat-value cz-bold" id="dailyVisitors">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-panel">
+                            <h5 class="cz-black">Recent Views</h5>
+                            <div class="viewers-list" id="viewersList">
+                                <!-- Recent viewers will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings-tab" class="tab-content">
+                <div class="row">
+                    <div class="col s12 m6">
+                        <div class="card-panel">
+                            <h5 class="cz-black">Privacy Settings</h5>
+                            <div class="settings-list">
+                                <div class="setting-item">
+                                    <div class="setting-content">
+                                        <span class="cz-regular">Show My Profile</span>
+                                        <small>Allow others to see your profile</small>
+                                    </div>
+                                    <div class="switch">
+                                        <label>
+                                            Off
+                                            <input type="checkbox" id="showProfile" checked>
+                                            <span class="lever"></span>
+                                            On
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-content">
+                                        <span class="cz-regular">Online Status</span>
+                                        <small>Show when you're online</small>
+                                    </div>
+                                    <div class="switch">
+                                        <label>
+                                            Off
+                                            <input type="checkbox" id="showOnlineStatus" checked>
+                                            <span class="lever"></span>
+                                            On
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-content">
+                                        <span class="cz-regular">Allow Messages</span>
+                                        <small>Receive messages from all users</small>
+                                    </div>
+                                    <div class="switch">
+                                        <label>
+                                            Off
+                                            <input type="checkbox" id="allowMessages" checked>
+                                            <span class="lever"></span>
+                                            On
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col s12 m6">
+                        <div class="card-panel">
+                            <h5 class="cz-black">Notification Settings</h5>
+                            <div class="settings-list">
+                                <div class="setting-item">
+                                    <div class="setting-content">
+                                        <span class="cz-regular">New Matches</span>
+                                        <small>Notify when you get new matches</small>
+                                    </div>
+                                    <div class="switch">
+                                        <label>
+                                            Off
+                                            <input type="checkbox" id="notifyMatches" checked>
+                                            <span class="lever"></span>
+                                            On
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-content">
+                                        <span class="cz-regular">Messages</span>
+                                        <small>Notify about new messages</small>
+                                    </div>
+                                    <div class="switch">
+                                        <label>
+                                            Off
+                                            <input type="checkbox" id="notifyMessages" checked>
+                                            <span class="lever"></span>
+                                            On
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-content">
+                                        <span class="cz-regular">Profile Views</span>
+                                        <small>Notify when someone views your profile</small>
+                                    </div>
+                                    <div class="switch">
+                                        <label>
+                                            Off
+                                            <input type="checkbox" id="notifyViews">
+                                            <span class="lever"></span>
+                                            On
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-panel danger-zone">
+                            <h5 class="cz-black">Account Management</h5>
+                            <div class="account-actions">
+                                <button class="btn waves-effect waves-light btn-flat" id="changePasswordBtn">
+                                    <i class="material-icons left">vpn_key</i>Change Password
+                                </button>
+                                <button class="btn waves-effect waves-light btn-flat red-text" id="deleteAccountBtn">
+                                    <i class="material-icons left">delete</i>Delete Account
+                                </button>
+                            </div>
+                            <p class="warning-text"><i class="material-icons">warning</i> Account deletion is permanent and cannot be undone.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4 class="cz-black">Edit Profile</h4>
+            <form id="editProfileForm">
+                <!-- Form will be loaded dynamically -->
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close btn-flat">Cancel</a>
+            <button id="saveProfileBtn" class="btn waves-effect waves-light emerald-bg">Save Changes</button>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="changePasswordModal" class="modal">
+        <div class="modal-content">
+            <h4 class="cz-black">Change Password</h4>
+            <form id="changePasswordForm">
+                <div class="input-field">
+                    <input id="currentPassword" type="password" required>
+                    <label for="currentPassword">Current Password</label>
+                </div>
+                <div class="input-field">
+                    <input id="newPassword" type="password" required minlength="8">
+                    <label for="newPassword">New Password</label>
+                </div>
+                <div class="input-field">
+                    <input id="confirmNewPassword" type="password" required>
+                    <label for="confirmNewPassword">Confirm New Password</label>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close btn-flat">Cancel</a>
+            <button id="savePasswordBtn" class="btn waves-effect waves-light emerald-bg">Change Password</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/materialize.min.js"></script>
+    <script src="scripts/profile.js"></script>
+    
+    <!-- Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('scripts/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
+
+

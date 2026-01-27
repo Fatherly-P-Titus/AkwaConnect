@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Akwa-Connect</title>
+    <link rel="stylesheet" href="styles/materialize.min.css">
+    <link href="styles/cinzel/cinzel.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f0fdf4 0%, #fefce8 100%);
+            font-family: 'Cinzel', serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .offline-container {
+            max-width: 500px;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .offline-icon {
+            font-size: 80px;
+            color: #f59e0b;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #047857;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            color: #6b7280;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            background: linear-gradient(90deg, #10b981 0%, #f59e0b 100%);
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            border-radius: 25px;
+            padding: 0 30px;
+        }
+        
+        .offline-features {
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .feature-icon {
+            color: #10b981;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">
+            <i class="material-icons">wifi_off</i>
+        </div>
+        
+        <h1>You're Offline</h1>
+        
+        <p>
+            Don't worry! You can still use some features of Akwa-Connect while offline.
+            Your actions will be saved and synced when you're back online.
+        </p>
+        
+        <button class="btn btn-large" onclick="window.location.reload()">
+            <i class="material-icons left">refresh</i>
+            Try to Reconnect
+        </button>
+        
+        <div class="offline-features">
+            <h5>Available Offline:</h5>
+            
+            <div class="feature-item">
+                <i class="material-icons feature-icon">visibility</i>
+                <span>Browse cached profiles</span>
+            </div>
+            
+            <div class="feature-item">
+                <i class="material-icons feature-icon">favorite_border</i>
+                <span>Like profiles (will sync later)</span>
+            </div>
+            
+            <div class="feature-item">
+                <i class="material-icons feature-icon">drafts</i>
+                <span>Compose messages</span>
+            </div>
+            
+            <div class="feature-item">
+                <i class="material-icons feature-icon">person</i>
+                <span>View your profile</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Try to reconnect periodically
+        setInterval(() => {
+            if (navigator.onLine) {
+                window.location.href = '/';
+            }
+        }, 10000);
+    </script>
+</body>
+</html>
+
+
+

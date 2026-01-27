@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - Akwa-Connect</title>
+    
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="styles/materialize.min.css">
+
+    <link rel="stylesheet" href="styles/font/micons.css">
+    
+    <!-- Cinzel Font -->
+    <link href="styles/cinzel/cinzel.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles/style.css">
+    
+    <!-- Messages-specific styles -->
+    <link rel="stylesheet" href="styles/messages.css">
+</head>
+
+<body>
+    <!-- Splash Screen for PWA -->
+    <div class="app-splash hide">
+        <div class="splash-logo cz-black">Akwa-Connect</div>
+        <div class="splash-spinner"></div>
+    </div>
+
+    <!-- Logo Section -->
+    <div class="logo-container center-align">
+        <img src="assets/AC-logo2.jpg" 
+             alt="Akwa-Connect Logo" 
+             class="main-logo">
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="main-nav">
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo cz-black">Akwa-Connect</a>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="profile.html" class="cz-regular">
+                    <i class="material-icons">person</i>
+                </a></li>
+                <li><a href="matches.html" class="cz-regular">
+                    <i class="material-icons">favorite</i>
+                </a></li>
+                <li><a href="messages.html" class="active cz-regular">
+                    <i class="material-icons">message</i>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <ul class="sidenav" id="mobile-nav">
+        <li><a href="index.html" class="cz-regular">Home</a></li>
+        <li><a href="profile.html" class="cz-regular">Profile</a></li>
+        <li><a href="matches.html" class="cz-regular">Matches</a></li>
+        <li><a href="messages.html" class="cz-regular">Messages</a></li>
+    </ul>
+
+    <!-- Main Chat Container -->
+    <main class="chat-main">
+        <div class="chat-container">
+            <!-- Conversations List -->
+            <div class="conversation-list">
+                <div class="conversation-header">
+                    <h5 class="cz-black emerald-text">Messages</h5>
+                    <div class="search-container">
+                        <div class="input-field">
+                            <input type="text" id="searchConversations" 
+                                   placeholder="Search conversations..." 
+                                   class="cz-regular">
+                            <i class="material-icons">search</i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="conversationsList" class="conversations-container">
+                    <!-- Dynamic content -->
+                    <div class="empty-chat">
+                        <i class="material-icons large">chat_bubble_outline</i>
+                        <h5 class="cz-bold">No messages yet</h5>
+                        <p class="cz-regular">Make a match to start chatting!</p>
+                        <a href="matches.html" class="btn emerald-bg cz-bold">
+                            <i class="material-icons left">favorite</i>Find Matches
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Area -->
+            <div class="chat-area" id="chatArea" style="display: none;">
+                <!-- Chat Header -->
+                <div class="chat-header">
+                    <div class="match-info">
+                        <div class="match-avatar" id="matchAvatar">
+                            <i class="material-icons" id="matchAvatarIcon">person</i>
+                        </div>
+                        <div class="match-details">
+                            <h5 id="matchName" class="cz-bold">Match Name</h5>
+                            <div class="match-status">
+                                <span id="matchStatus" class="status-online">● Online</span>
+                                <span id="matchLGA" class="cz-regular">• Uyo</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-actions">
+                        <a href="#!" class="btn-flat" id="viewProfileBtn">
+                            <i class="material-icons">person</i>
+                        </a>
+                        <a href="#!" class="btn-flat" id="callBtn">
+                            <i class="material-icons">call</i>
+                        </a>
+                        <a href="#!" class="btn-flat" id="moreOptionsBtn">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Messages Container -->
+                <div class="messages-container" id="messagesContainer">
+                    <div class="messages-content">
+                        <!-- Messages will be loaded here -->
+                        <div class="empty-chat">
+                            <h5 class="cz-bold emerald-text">Start a conversation!</h5>
+                            <p class="cz-regular">Break the ice with these suggestions:</p>
+                            <div class="icebreaker-suggestions">
+                                <button class="btn icebreaker-btn cz-bold" 
+                                        data-text="Hi! I noticed we're both from {lga}. How long have you lived there?">
+                                    <i class="material-icons left">location_on</i>Common Location
+                                </button>
+                                <button class="btn icebreaker-btn cz-bold" 
+                                        data-text="I see you like {hobby}. That's one of my favorites too!">
+                                    <i class="material-icons left">favorite</i>Shared Hobby
+                                </button>
+                                <button class="btn icebreaker-btn cz-bold" 
+                                        data-text="Hello! How's your day going in Akwa Ibom?">
+                                    <i class="material-icons left">waving_hand</i>Local Greeting
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Typing Indicator -->
+                <div class="typing-indicator" id="typingIndicator">
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <span id="typingText" class="cz-regular"></span>
+                </div>
+
+                <!-- Message Input -->
+                <div class="message-input">
+                    <div class="input-container">
+                        <button class="btn-flat attachment-btn" id="attachmentBtn">
+                            <i class="material-icons">attach_file</i>
+                        </button>
+                        
+                        <div class="input-wrapper">
+                            <input type="text" 
+                                   id="messageInput" 
+                                   placeholder="Type a message..." 
+                                   class="cz-regular"
+                                   autocomplete="off">
+                            <button class="btn-flat emoji-btn" id="emojiBtn">
+                                <i class="material-icons">mood</i>
+                            </button>
+                        </div>
+                        
+                        <button id="sendMessage" class="btn send-btn emerald-bg">
+                            <i class="material-icons">send</i>
+                        </button>
+                    </div>
+                    
+                    <div class="input-actions">
+                        <button class="btn-flat action-btn voice-btn" id="voiceBtn">
+                            <i class="material-icons">mic</i>
+                        </button>
+                        <button class="btn-flat action-btn photo-btn" id="photoBtn">
+                            <i class="material-icons">photo_camera</i>
+                        </button>
+                        <button class="btn-flat action-btn gif-btn" id="gifBtn">
+                            <i class="material-icons">gif</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Welcome State (shown when no conversation selected) -->
+            <div class="welcome-state" id="welcomeState">
+                <div class="welcome-content">
+                    <div class="welcome-avatar">
+                        <i class="material-icons">chat_bubble</i>
+                    </div>
+                    <h4 class="cz-black emerald-text">Welcome to Messages</h4>
+                    <p class="cz-regular">Select a conversation from the list to start chatting, or find new matches to connect with.</p>
+                    <div class="welcome-actions">
+                        <a href="matches.html" class="btn emerald-bg cz-bold">
+                            <i class="material-icons left">favorite</i>Find Matches
+                        </a>
+                        <a href="#!" class="btn gold-bg cz-bold" id="refreshConversations">
+                            <i class="material-icons left">refresh</i>Refresh
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- New Match Modal -->
+    <div id="newMatchModal" class="modal match-modal">
+        <div class="modal-content center-align">
+            <h4 class="cz-black emerald-text">🎉 It's a Match!</h4>
+            <div class="match-users">
+                <div class="match-user">
+                    <div class="match-avatar">
+                        <i class="material-icons" id="newMatchUserIcon">person</i>
+                    </div>
+                    <h5 id="newMatchName" class="cz-bold"></h5>
+                </div>
+                <div class="match-heart">
+                    <i class="material-icons">favorite</i>
+                </div>
+                <div class="match-user">
+                    <div class="match-avatar">
+                        <i class="material-icons">person</i>
+                    </div>
+                    <h5 class="cz-bold">You</h5>
+                </div>
+            </div>
+            <p class="cz-regular">You both liked each other! Start a conversation now.</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-light btn-flat cz-regular">
+                Keep Browsing
+            </a>
+            <a href="messages.html?matchId=" id="startChatBtn" class="btn emerald-bg cz-bold">
+                <i class="material-icons left">chat</i>Start Chatting
+            </a>
+        </div>
+    </div>
+
+    <!-- Profile View Modal -->
+    <div id="profileModal" class="modal profile-modal">
+        <div class="modal-content">
+            <!-- Profile details will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/materialize.min.js"></script>
+    <script src="scripts/messages.js" type="module"></script>
+</body>
+</html>
+
+
+
