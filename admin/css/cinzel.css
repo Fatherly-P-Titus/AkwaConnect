@@ -1,0 +1,48 @@
+/* Cinzel Font - Local Files */
+@font-face {
+    font-family: 'Cinzel';
+    src: url('../fonts/cinzel/Cinzel-Regular.otf') format('otf'),
+         url('../fonts/cinzel/Cinzel-Regular.otf') format('otf');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cinzel';
+    src: url('../fonts/cinzel/Cinzel-Bold.otf') format('otf'),
+         url('../fonts/cinzel/Cinzel-Bold.otf') format('otf');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cinzel';
+    src: url('../fonts/cinzel/Cinzel-Black.otf') format('otf'),
+         url('../fonts/cinzel/Cinzel-Black.otf') format('otf');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Class-based font utilities */
+.cz-regular {
+    font-family: 'Cinzel', serif;
+    font-weight: 400;
+}
+
+.cz-bold {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+}
+
+.cz-black {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+}
+
+/* Apply Cinzel to headings by default */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+}

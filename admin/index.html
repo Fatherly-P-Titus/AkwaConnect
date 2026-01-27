@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Akwa-Connect</title>
+    
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="../styles/materialize.min.css">
+    <link rel="stylesheet" href="../styles/font/micons.css">
+    
+    <!-- Local Fonts -->
+    <link rel="stylesheet" href="css/cinzel.css">
+    
+    <!-- Admin Styles -->
+    <link rel="stylesheet" href="css/admin.css">
+    
+    <!-- Chart.js -->
+    <script src="js/chart.js"></script>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../assets/favicon/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar loaded via JS -->
+        <div id="admin-sidebar-container"></div>
+
+        <!-- Main Content -->
+        <div class="admin-main">
+            <!-- Header -->
+            <div class="admin-header">
+                <div>
+                    <h1>Dashboard Overview</h1>
+                    <div class="admin-date" id="currentDate">Loading date...</div>
+                </div>
+                <div>
+                    <button class="btn waves-effect waves-light" id="refreshBtn">
+                        <i class="material-icons left">refresh</i> Refresh Data
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid" id="statsGrid">
+                <!-- Stats will be loaded dynamically -->
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #dbeafe; color: #3b82f6;">
+                        <i class="material-icons">people</i>
+                    </div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Total Users</div>
+                    <div class="stat-trend trend-up">
+                        <i class="material-icons">trending_up</i>
+                        <span>0% this month</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #f0fdf4; color: #10b981;">
+                        <i class="material-icons">man</i>
+                    </div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Male Users</div>
+                    <div class="stat-trend trend-up">
+                        <i class="material-icons">trending_up</i>
+                        <span>0%</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #fef3c7; color: #f59e0b;">
+                        <i class="material-icons">woman</i>
+                    </div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Female Users</div>
+                    <div class="stat-trend trend-up">
+                        <i class="material-icons">trending_up</i>
+                        <span>0%</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #e0e7ff; color: #8b5cf6;">
+                        <i class="material-icons">cake</i>
+                    </div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Age 18-25</div>
+                    <div class="stat-trend trend-up">
+                        <i class="material-icons">trending_up</i>
+                        <span>0%</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #fce7f3; color: #ec4899;">
+                        <i class="material-icons">person</i>
+                    </div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Age 25-35</div>
+                    <div class="stat-trend trend-up">
+                        <i class="material-icons">trending_up</i>
+                        <span>0%</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #dcfce7; color: #22c55e;">
+                        <i class="material-icons">elderly</i>
+                    </div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Age 35-50</div>
+                    <div class="stat-trend trend-up">
+                        <i class="material-icons">trending_up</i>
+                        <span>0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>User Growth</h3>
+                    <div class="chart-container">
+                        <canvas id="userGrowthChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <h3>Gender Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="genderChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Age Distribution Chart -->
+            <div class="chart-card">
+                <h3>Age Distribution</h3>
+                <div class="chart-container">
+                    <canvas id="ageDistributionChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Recent Users Table -->
+            <div class="table-card">
+                <h3>Recent Registrations</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Email</th>
+                            <th>LGA</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Joined</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentUsersTable">
+                        <tr>
+                            <td colspan="8" style="text-align: center; padding: 40px;">
+                                <i class="material-icons" style="font-size: 48px; color: #d1d5db;">hourglass_empty</i>
+                                <p>Loading user data...</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../scripts/jquery.js"></script>
+    <script src="../scripts/materialize.min.js"></script>
+    <script src="../scripts/auth.js"></script>
+    <script src="js/admin-core.js"></script>
+    <script src="js/admin-dashboard.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Initialize admin dashboard
+            if (window.adminDashboard) {
+                window.adminDashboard.init();
+            }
+        });
+    </script>
+</body>
+</html>

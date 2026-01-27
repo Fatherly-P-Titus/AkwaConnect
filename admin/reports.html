@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics & Reports - Akwa-Connect Admin</title>
+    
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="../styles/materialize.min.css">
+    <link rel="stylesheet" href="../styles/font/micons.css">
+    
+    <!-- Local Fonts -->
+    <link rel="stylesheet" href="css/cinzel.css">
+    
+    <!-- Admin Styles -->
+    <link rel="stylesheet" href="css/admin.css">
+    
+    <!-- Chart.js -->
+    <script src="js/chart.js"></script>
+    
+    <!-- Date Range Picker -->
+    <link rel="stylesheet" href="css/daterangepicker.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../assets/favicon/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar loaded via JS -->
+        <div id="admin-sidebar-container"></div>
+
+        <!-- Main Content -->
+        <div class="admin-main">
+            <!-- Header -->
+            <div class="admin-header">
+                <div>
+                    <h1>Analytics & Reports</h1>
+                    <div class="admin-date" id="currentDate">Loading date...</div>
+                </div>
+                <div>
+                    <button class="btn waves-effect waves-light" id="generateReportBtn">
+                        <i class="material-icons left">description</i> Generate Report
+                    </button>
+                </div>
+            </div>
+
+            <!-- Date Range Selector -->
+            <div class="filter-bar">
+                <div class="filter-group">
+                    <span class="filter-label">Date Range:</span>
+                    <input type="text" id="dateRangePicker" class="filter-input" placeholder="Select date range">
+                </div>
+                
+                <div class="filter-group">
+                    <span class="filter-label">Report Type:</span>
+                    <select class="filter-select" id="reportType">
+                        <option value="overview">Overview</option>
+                        <option value="users">User Analytics</option>
+                        <option value="matches">Match Analytics</option>
+                        <option value="engagement">Engagement</option>
+                        <option value="revenue">Revenue</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <span class="filter-label">Granularity:</span>
+                    <select class="filter-select" id="granularity">
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="quarterly">Quarterly</option>
+                    </select>
+                </div>
+                
+                <button class="filter-btn waves-effect waves-light" id="applyReportFiltersBtn">
+                    <i class="material-icons">refresh</i> Update Report
+                </button>
+                
+                <button class="filter-btn waves-effect waves-light" id="exportReportBtn" style="background: #3b82f6;">
+                    <i class="material-icons">download</i> Export PDF
+                </button>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="stats-grid" id="keyMetricsGrid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #dbeafe; color: #3b82f6;">
+                        <i class="material-icons">trending_up</i>
+                    </div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Active Users</div>
+                    <div class="stat-trend trend-up">
+                        <i class="material-icons">trending_up</i>
+                        <span>0% from last period</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #f0fdf4; color: #10b981;">
+                        <i class="material-icons">people</i>
+                    </div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">New Registrations</div>
+                    <div class="stat-trend trend-up">
+                        <i class="material-icons">trending_up</i>
+                        <span>0% growth</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #fef3c7; color: #f59e0b;">
+                        <i class="material-icons">favorite</i>
+                    </div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Total Matches</div>
+                    <div class="stat-trend trend-up">
+                        <i class="material-icons">trending_up</i>
+                        <span>0% increase</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #fce7f3; color: #ec4899;">
+                        <i class="material-icons">message</i>
+                    </div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Messages Sent</div>
+                    <div class="stat-trend trend-up">
+                        <i class="material-icons">trending_up</i>
+                        <span>0% more</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #e0e7ff; color: #8b5cf6;">
+                        <i class="material-icons">visibility</i>
+                    </div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Profile Views</div>
+                    <div class="stat-trend trend-up">
+                        <i class="material-icons">trending_up</i>
+                        <span>0% increase</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #dcfce7; color: #22c55e;">
+                        <i class="material-icons">emoji_emotions</i>
+                    </div>
+                    <div class="stat-value">0%</div>
+                    <div class="stat-label">Engagement Rate</div>
+                    <div class="stat-trend trend-up">
+                        <i class="material-icons">trending_up</i>
+                        <span>0% improvement</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Charts Row -->
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>User Growth Over Time</h3>
+                        <div class="chart-actions">
+                            <button class="btn-icon btn-small" data-chart="userGrowth" onclick="adminReports.toggleChartType(this)">
+                                <i class="material-icons">bar_chart</i>
+                            </button>
+                            <button class="btn-icon btn-small" onclick="adminReports.downloadChart('userGrowthChart')">
+                                <i class="material-icons">download</i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="userGrowthChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Match Success Rate</h3>
+                        <div class="chart-actions">
+                            <button class="btn-icon btn-small" data-chart="matchSuccess" onclick="adminReports.toggleChartType(this)">
+                                <i class="material-icons">pie_chart</i>
+                            </button>
+                            <button class="btn-icon btn-small" onclick="adminReports.downloadChart('matchSuccessChart')">
+                                <i class="material-icons">download</i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="matchSuccessChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Charts Row -->
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>User Engagement by Time of Day</h3>
+                        <div class="chart-actions">
+                            <button class="btn-icon btn-small" data-chart="engagementTime" onclick="adminReports.toggleChartType(this)">
+                                <i class="material-icons">show_chart</i>
+                            </button>
+                            <button class="btn-icon btn-small" onclick="adminReports.downloadChart('engagementTimeChart')">
+                                <i class="material-icons">download</i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="engagementTimeChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>LGA Performance</h3>
+                        <div class="chart-actions">
+                            <button class="btn-icon btn-small" data-chart="lgaPerformance" onclick="adminReports.toggleChartType(this)">
+                                <i class="material-icons">map</i>
+                            </button>
+                            <button class="btn-icon btn-small" onclick="adminReports.downloadChart('lgaPerformanceChart')">
+                                <i class="material-icons">download</i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="lgaPerformanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demographics Section -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>User Demographics</h3>
+                    <div class="chart-actions">
+                        <select class="chart-select" id="demographicFilter">
+                            <option value="age">Age Groups</option>
+                            <option value="education">Education Level</option>
+                            <option value="profession">Profession</option>
+                            <option value="income">Income Bracket</option>
+                        </select>
+                        <button class="btn-icon btn-small" onclick="adminReports.downloadChart('demographicsChart')">
+                            <i class="material-icons">download</i>
+                        </button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="demographicsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Data Tables Section -->
+            <div class="table-card">
+                <div class="table-header">
+                    <h3>Top Performing LGAs</h3>
+                    <div class="table-actions">
+                        <button class="btn-small waves-effect waves-light" onclick="adminReports.exportTableData()">
+                            <i class="material-icons left">table_chart</i> Export Data
+                        </button>
+                    </div>
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>LGA</th>
+                            <th>Total Users</th>
+                            <th>Active Users</th>
+                            <th>Match Rate</th>
+                            <th>Success Rate</th>
+                            <th>Growth</th>
+                            <th>Trend</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lgaPerformanceTable">
+                        <tr>
+                            <td colspan="8" style="text-align: center; padding: 40px;">
+                                <i class="material-icons" style="font-size: 48px; color: #d1d5db;">hourglass_empty</i>
+                                <p>Loading LGA performance data...</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Insights Section -->
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <i class="material-icons" style="color: #10b981;">lightbulb</i>
+                        <h4>Key Insights</h4>
+                    </div>
+                    <div class="insight-content" id="keyInsights">
+                        <ul>
+                            <li>Loading insights...</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <i class="material-icons" style="color: #f59e0b;">warning</i>
+                        <h4>Areas for Improvement</h4>
+                    </div>
+                    <div class="insight-content" id="improvementAreas">
+                        <ul>
+                            <li>Loading improvement areas...</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <i class="material-icons" style="color: #3b82f6;">trending_up</i>
+                        <h4>Recommendations</h4>
+                    </div>
+                    <div class="insight-content" id="recommendations">
+                        <ul>
+                            <li>Loading recommendations...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Summary -->
+            <div class="report-summary">
+                <div class="summary-header">
+                    <h3>Report Summary</h3>
+                    <span class="report-period" id="reportPeriod">Loading period...</span>
+                </div>
+                <div class="summary-content" id="reportSummary">
+                    <p>Generating report summary...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Generation Modal -->
+    <div id="reportGenerationModal" class="modal">
+        <div class="modal-content">
+            <h4>Generate Report</h4>
+            <div class="row">
+                <div class="col s12">
+                    <div class="input-field">
+                        <input type="text" id="reportTitle" placeholder="Enter report title">
+                        <label for="reportTitle">Report Title</label>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <div class="input-field">
+                        <textarea id="reportDescription" class="materialize-textarea" placeholder="Enter report description"></textarea>
+                        <label for="reportDescription">Description (Optional)</label>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <div class="input-field">
+                        <select id="reportFormat">
+                            <option value="pdf">PDF Document</option>
+                            <option value="excel">Excel Spreadsheet</option>
+                            <option value="csv">CSV File</option>
+                            <option value="html">HTML Report</option>
+                        </select>
+                        <label>Report Format</label>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <div class="input-field">
+                        <select id="reportSections" multiple>
+                            <option value="summary" selected>Executive Summary</option>
+                            <option value="metrics" selected>Key Metrics</option>
+                            <option value="charts" selected>Charts & Graphs</option>
+                            <option value="tables" selected>Data Tables</option>
+                            <option value="insights" selected>Insights</option>
+                            <option value="recommendations" selected>Recommendations</option>
+                        </select>
+                        <label>Include Sections</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close btn-flat">Cancel</a>
+            <a href="#!" class="btn waves-effect waves-light" id="confirmGenerateReportBtn">
+                <i class="material-icons left">description</i> Generate Report
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../scripts/jquery.min.js"></script>
+    <script src="../scripts/materialize.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/daterangepicker.min.js"></script>
+    
+    <!-- Admin Scripts -->
+    <script src="../scripts/auth.js"></script>
+    <script src="js/admin-core.js"></script>
+    <script src="js/admin-reports.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Initialize reports
+            if (window.adminReports) {
+                window.adminReports.init();
+            }
+        });
+    </script>
+</body>
+</html>
