@@ -3,11 +3,6 @@ Akwa-Connect 🌴❤️
 
 A culturally-tailored dating platform connecting singles across Akwa Ibom State, Nigeria.
 
-https://img.shields.io/badge/Frontend-GitHub%20Pages-blue?logo=github
-https://img.shields.io/badge/Backend-Render-blue?logo=render
-https://img.shields.io/badge/Database-Supabase-green?logo=supabase
-https://img.shields.io/badge/License-MIT-green.svg
-https://img.shields.io/badge/Built%20With-❤️-red.svg
 
 ✨ Overview
 
