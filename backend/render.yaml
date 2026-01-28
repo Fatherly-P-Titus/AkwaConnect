@@ -2,6 +2,7 @@ services:
   - type: web
     name: akwa-connect-backend
     env: node
+    rootDir: backend
     buildCommand: npm install
     startCommand: npm start
     envVars:
@@ -18,7 +19,7 @@ services:
       - key: VAPID_PRIVATE_KEY
         sync: false
       - key: ALLOWED_ORIGINS
-        value: https://your-frontend-domain.com
+        value: https://akwaconnect.netlify.app
     healthCheckPath: /health
     autoDeploy: true
     disk:
